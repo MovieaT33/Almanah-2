@@ -1,0 +1,226 @@
+{
+	"colors": {
+		"red": "31m",
+		"green": "32m",
+		"blue": "34m",
+		"yellow": "33m",
+		"magenta": "35m",
+		"cyan": "36m",
+		"reset": "0m",
+		"bold": "1m",
+		"underline": "4m"
+	},
+	"title": "<bold><green>Історія України — XVI–XVII ст<reset>",
+	"separations": [
+		{ "id": 0, "title": "<bold><cyan>Події XVI століття<reset>" },
+		{ "id": 1, "title": "<bold><yellow>Унії та договори<reset>" },
+		{ "id": 2, "title": "<bold><magenta>Козацькі повстання<reset>" },
+		{ "id": 3, "title": "<bold><red>Національно‑визвольна війна<reset>" }
+	],
+	"questions": [
+		{
+			"id": 1,
+			"separations": [0],
+			"text": "<underline>1514 рік<reset> — яка визначна битва відбулася та чому вона важлива?",
+			"answer": "<blue><underline>Битва під Оршею<reset></blue> — перемога литовсько‑польських військ над Московією, що вплинула на баланс сил у Східній Європі"
+		},
+		{
+			"id": 2,
+			"separations": [0],
+			"text": "Коли відбулася <underline>Битва під Оршею<reset>?",
+			"answer": "<blue><underline>1514<reset></blue>"
+		},
+		{
+			"id": 3,
+			"separations": [0],
+			"text": "Яка подія була **перед** <underline>Битвою під Оршею<reset>?",
+			"answer": "<blue>Життя українських земель у складі Великого князівства Литовського<reset></blue>"
+		},
+		{
+			"id": 4,
+			"separations": [0],
+			"text": "Яка подія була **після** <underline>Битви під Оршею<reset>?",
+			"answer": "<blue>Заснування першої Запорозької Січі (1556)<reset></blue>"
+		},
+		{
+			"id": 5,
+			"separations": [0],
+			"text": "<underline>1556 рік<reset> — що засновано на острові Мала Хортиця і для чого?",
+			"answer": "<blue><underline>Перша Запорозька Січ<reset></blue> — козацька військова база та центр організації"
+		},
+		{
+			"id": 6,
+			"separations": [0],
+			"text": "Коли відбулося <underline>заснування Запорозької Січі<reset>?",
+			"answer": "<blue><underline>1556<reset></blue>"
+		},
+		{
+			"id": 7,
+			"separations": [0],
+			"text": "Яка подія була **перед** <underline>заснуванням Запорозької Січі<reset>?",
+			"answer": "<blue>Битва під Оршею (1514)<reset></blue>"
+		},
+		{
+			"id": 8,
+			"separations": [0],
+			"text": "Яка подія була **після** <underline>заснування Запорозької Січі<reset>?",
+			"answer": "<blue>Пересопницьке Євангеліє (1556–1561)<reset></blue>"
+		},
+		{
+			"id": 9,
+			"separations": [0],
+			"text": "<underline>1556–1561 рр<reset> — що створено і чому це важливо?",
+			"answer": "<blue><underline>Пересопницьке Євангеліє<reset></blue> — видатна пам’ятка української мови та культури, переклад Святого Письма"
+		},
+		{
+			"id": 10,
+			"separations": [0],
+			"text": "Яка подія була **перед** <underline>Пересопницьким Євангелієм<reset>?",
+			"answer": "<blue>Заснування Запорозької Січі (1556)<reset></blue>"
+		},
+		{
+			"id": 11,
+			"separations": [0],
+			"text": "Яка подія була **після** <underline>Пересопницького Євангелія<reset>?",
+			"answer": "<blue>Люблінська унія (1569)<reset></blue>"
+		},
+		{
+			"id": 12,
+			"separations": [1],
+			"text": "<underline>1569 рік<reset> — яку унію укладено та що вона означала?",
+			"answer": "<blue><underline>Люблінська унія<reset></blue> — об’єднання Польщі та Литви, посилення польського впливу на українські землі"
+		},
+		{
+			"id": 13,
+			"separations": [1],
+			"text": "Яка подія була **перед** <underline>Люблінською унією<reset>?",
+			"answer": "<blue>Пересопницьке Євангеліє (1556–1561)<reset></blue>"
+		},
+		{
+			"id": 14,
+			"separations": [1],
+			"text": "Яка подія була **після** <underline>Люблінської унії<reset>?",
+			"answer": "<blue>Реєстрове козацтво (1572)<reset></blue>"
+		},
+		{
+			"id": 15,
+			"separations": [2],
+			"text": "<underline>1572 рік<reset> — що впроваджено серед козаків?",
+			"answer": "<blue><underline>Реєстрове козацтво<reset></blue> — частина козаків стала на службу Речі Посполитій"
+		},
+		{
+			"id": 16,
+			"separations": [2],
+			"text": "Яка подія була **перед** <underline>реєстровим козацтвом<reset>?",
+			"answer": "<blue>Люблінська унія (1569)<reset></blue>"
+		},
+		{
+			"id": 17,
+			"separations": [2],
+			"text": "Яка подія була **після** <underline>реєстрового козацтва<reset>?",
+			"answer": "<blue>Берестейська унія (1596)<reset></blue>"
+		},
+		{
+			"id": 18,
+			"separations": [1],
+			"text": "<underline>1596 рік<reset> — що відбулося на церковному соборі і чому це важливо?",
+			"answer": "<blue><underline>Берестейська унія<reset></blue> — створення греко‑католицької церкви, об’єднання частини православної з Римом"
+		},
+		{
+			"id": 19,
+			"separations": [2],
+			"text": "<underline>Повстання Косинського та Наливайка<reset> — коли це відбулося і чому?",
+			"answer": "<blue>1590‑ті роки<reset></blue> — великі повстання проти польських обмежень для козаків"
+		},
+		{
+			"id": 20,
+			"separations": [2],
+			"text": "Яка подія була **після** <underline>1590‑ті роки<reset>?",
+			"answer": "<blue>Серія козацьких повстань 1620–1630‑ті роки<reset></blue>"
+		},
+		{
+			"id": 21,
+			"separations": [2],
+			"text": "<underline>1620–1630‑ті роки<reset> — які події відбувалися?",
+			"answer": "<blue>Серія козацьких повстань проти влади Речі Посполитої<reset></blue>"
+		},
+		{
+			"id": 22,
+			"separations": [2],
+			"text": "Яка подія була **перед** <underline>1620–1630‑ті роки<reset>?",
+			"answer": "<blue>Повстання Косинського та Наливайка (1590‑ті роки)<reset></blue>"
+		},
+		{
+			"id": 23,
+			"separations": [2],
+			"text": "Яка подія була **після** <underline>1620–1630‑ті роки<reset>?",
+			"answer": "<blue>Національно‑визвольна війна 1648–1657<reset></blue>"
+		},
+		{
+			"id": 24,
+			"separations": [3],
+			"text": "<underline>1648–1657 роки<reset> — що це за період і хто головний діяч?",
+			"answer": "<blue><underline>Національно‑визвольна війна<reset></blue> — боротьба під проводом Богдана Хмельницького проти польського панування"
+		},
+		{
+			"id": 25,
+			"separations": [3],
+			"text": "Яка подія була **перед** <underline>1648–1657 роки<reset>?",
+			"answer": "<blue>Серія козацьких повстань 1620–1630‑ті роки<reset></blue>"
+		},
+		{
+			"id": 26,
+			"separations": [3],
+			"text": "Яка подія була **після** <underline>1648–1657 роки<reset>?",
+			"answer": "<blue>Зборівський договір 1649<reset></blue>"
+		},
+		{
+			"id": 27,
+			"separations": [1,3],
+			"text": "<underline>Зборівський договір 1649<reset> — що визначав?",
+			"answer": "<blue>Договір між козаками та Річчю Посполитою після битви<reset></blue>"
+		},
+		{
+			"id": 28,
+			"separations": [1,3],
+			"text": "Яка подія була **перед** <underline>Зборівським договором 1649<reset>?",
+			"answer": "<blue>Національно‑визвольна війна 1648–1657<reset></blue>"
+		},
+		{
+			"id": 29,
+			"separations": [1,3],
+			"text": "Яка подія була **після** <underline>Зборівського договору 1649<reset>?",
+			"answer": "<blue>Білоцерківський договір 1651<reset></blue>"
+		},
+		{
+			"id": 30,
+			"separations": [1,3],
+			"text": "<underline>Березневі статті 1654<reset> — що це було?",
+			"answer": "<blue>Угоди між Військом Запорозьким і Московією<reset></blue>"
+		},
+		{
+			"id": 31,
+			"separations": [1,3],
+			"text": "Яка подія була **перед** <underline>Березневими статтями 1654<reset>?",
+			"answer": "<blue>Білоцерківський договір 1651<reset></blue>"
+		},
+		{
+			"id": 32,
+			"separations": [1,3],
+			"text": "Яка подія була **після** <underline>Березневих статей 1654<reset>?",
+			"answer": "<blue>Віленське перемир’я 1656<reset></blue>"
+		},
+		{
+			"id": 33,
+			"separations": [1,3],
+			"text": "<underline>Віленське перемир’я 1656<reset> — що це було?",
+			"answer": "<blue>Перемир’я між Московією та Річчю Посполитою<reset></blue>"
+		},
+		{
+			"id": 34,
+			"separations": [1,3],
+			"text": "Яка подія була **перед** <underline>Віленським перемир’ям 1656<reset>?",
+			"answer": "<blue>Березневі статті 1654<reset></blue>"
+		}
+	]
+}
