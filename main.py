@@ -1,138 +1,123 @@
-import json
+import json  # ujson
 import random
 import sys
-from enum import StrEnum
-from typing import NoReturn
+import time
 
-
-class Colors(StrEnum):
-    RED = "31m"
-    GREEN = "32m"
-    RESET = "0m"
-
-    def __str__(self) -> str:
-        return f"\033[{self.value}"
-
-
-JSON_DIR: str = "json"
-
-
-def parse_text(text: str, colors: dict[str, str]) -> str:
-    for color_name, color_code in colors.items():
-        text = text.replace(f"<{color_name}>", f"\033[{color_code}")
-    return text
-
-
-def print_title(title: str, colors: dict[str, str]) -> None:
-    print(parse_text(title, colors))
-
-
-def print_separation(
-    separations: list[dict], sep_id: int, colors: dict[str, str],
-) -> None | NoReturn:
-    for sep in separations:
-        if sep["id"] == sep_id:
-            print(parse_text(sep["title"], colors))
-            return None
-    raise ValueError(f"Separation with id {sep_id} not found")
-
-
-def print_separations(
-    separations: list[dict], sep_ids: list[int], colors: dict[str, str],
-) -> None:
-    for sep_id in sep_ids:
-        print_separation(separations, sep_id, colors)
-
-
-def print_question(
-    questions: list[dict],
-    q_id: int,
-    separations: list[dict],
-    colors: dict[str, str],
-) -> None | NoReturn:
-    for q in questions:
-        if q["id"] == q_id:
-            print_separations(separations, q.get("separations", []), colors)
-            print(parse_text(q["text"], colors))
-            return None
-    raise ValueError(f"Question with id {q_id} not found")
-
-
-def print_answer(
-    questions: list[dict],
-    q_id: int,
-    colors: dict[str, str],
-) -> None | NoReturn:
-    for q in questions:
-        if q["id"] == q_id:
-            print(parse_text(q["answer"], colors))
-            return None
-    raise ValueError(f"Answer for question with id {q_id} not found")
+LANGUAGE: str = "uk"
 
 
 def clear_console() -> None:
     print("\033[H\033[J", end="")
 
 
-def study(
-    colors: dict[str, str],
-    title: str,
-    separations: list[dict],
-    questions: list[dict],
-    shuffle: bool = True,
-) -> None:
-    print_title(title, colors)
+def parse_str(str_: str, replacements: dict[str, str]) -> str:
+    for replacement_name, replacement_str in replacements.items():
+        str_ = str_.replace(f"<{replacement_name}>", replacement_str)
+    return str_
 
-    shuffled_questions: list[dict] = questions.copy()
+
+def parse_header(
+    header: str, headers: dict[str, str], replacements: dict[str, str],
+) -> str:
+    return parse_str(headers[header], replacements)
+
+
+def parse_question(
+    question_data: tuple[str, str] | tuple[str, str, list[str]],
+    headers: dict[str, str],
+    replacements: dict[str, str],
+) -> str:
+    q_str: str = parse_str(question_data[0], replacements)
+    q_headers: list[str] = question_data[2] if len(question_data) > 2 else []
+
+    display_str: str = ""
+    for q_header in q_headers:
+        display_str += parse_header(q_header, headers, replacements)
+    display_str += q_str
+    return display_str
+
+
+def parse_answer(
+    question_data: tuple[str, str] | tuple[str, str, list[str]],
+    replacements: dict[str, str],
+) -> str:
+    return parse_str(question_data[1], replacements)
+
+
+def learn(
+    quiz_data: dict,
+    language: str,
+    shuffle: bool = False,
+    clear: bool = True,
+) -> float:
+    replacements: dict[str, str] = quiz_data.get("replacements", {})
+    headers: dict[str, str] = quiz_data.get("headers", {})
+    questions: dict[str, list[tuple[str, str]]] | None = \
+        quiz_data.get("questions")
+
+    if questions is None:
+        print(f"{__file__}: \033[31merror\033[0m: No 'questions' key found in "
+              "quiz data.")
+        return 0
+
+    if language not in questions:
+        print(f"{__file__}: \033[31merror\033[0m: Language '{language}' not "
+              "found in quiz data.")
+        return 0
+
+    language_questions: list[tuple[str, str]] = questions[language]
     if shuffle:
-        random.shuffle(shuffled_questions)
+        random.shuffle(language_questions)
 
-    for q in shuffled_questions:
-        print_question(questions, q["id"], separations, colors)
-        input("Your answer: ")
-
-        print("Correct answer: ", end="")
-        print_answer(questions, q["id"], colors)
-
-        input("Press Enter to continue...")
-        clear_console()
-
-
-# def test(quiz: dict) -> None:
-#     ...
-
-
-def main(quiz_filename: str) -> None:
-    # 1. Load quiz from JSON file
-    print(f"Quiz file: '{quiz_filename}'")
-    print("Loading quiz...", end="")
-    try:
-        with open(quiz_filename, "r", encoding="utf-8") as file:
-            quiz: dict = json.load(file)
-    except OSError as exc:
-        print(f" {Colors.RED}Error{Colors.RESET}: {exc}")
-        return
-
-    print(f" {Colors.GREEN}OK{Colors.RESET}")
-
-    # 2. Load quiz data
-    print("Loading quiz data...", end="")
-    colors: dict[str, str] = quiz.get("colors", {})
-    title: str = quiz.get("title", "Untitled Quiz")
-    separations: list[dict] = quiz.get("separations", [])
-    try:
-        questions: list[dict] = quiz["questions"]
-    except KeyError:
-        print(f" {Colors.RED}Error{Colors.RESET}: No questions found in quiz "
-              "data")
-        return
-
-    print(f" {Colors.GREEN}OK{Colors.RESET}")
     clear_console()
 
-    # 3.
-    study(colors, title, separations, questions)
+    questions_n: int = len(language_questions)
+    sum_time: float = 0
+    question_i: int = 0
+    for question in language_questions:
+        start_time: float = time.time()
+        print(f"{parse_question(question, headers, replacements)}   "
+              f"[{question_i + 1} / {questions_n}]")
+        input("> ")
+        end_time: float = time.time()
+        sum_time += end_time - start_time
+        question_i += 1
+
+        print(parse_answer(question, replacements))
+        input()
+
+        if clear:
+            clear_console()
+
+    average_time: float = sum_time / question_i if question_i > 0 else 0
+    print(f"\033[32m{average_time:.2f}s\033[0m")
+    return average_time
+
+
+def main(quiz_filename: str, statistic_filename: str | None = None) -> None:
+    try:
+        with open(quiz_filename, "r", encoding="utf-8") as file:
+            quiz_data: dict = json.load(file)
+    except OSError as exc:
+        print(f"{__file__}: \033[31merror\033[0m: {exc}")
+        return
+
+    av_time: float = learn(quiz_data, LANGUAGE, shuffle=True)
+    if statistic_filename is not None:
+        try:
+            with open(statistic_filename, "a", encoding="utf-8") as file:
+                file.write(f"{av_time}\n")
+        except OSError as exc:
+            print(f"{__file__}: \033[31merror\033[0m: {exc}")
+            return
 
 
 if __name__ == "__main__":
-    main(f"{JSON_DIR}/{sys.argv[1]}.json")
+    filename: str | None = sys.argv[1] if len(sys.argv) > 1 else None
+    if filename is None:
+        print(f"usage: {__file__} <quiz_filename> [statistics]")
+        sys.exit(1)
+
+    statistics_filename: str | None = \
+        sys.argv[2] if len(sys.argv) > 2 else None
+    main(filename, statistics_filename)
